@@ -15,13 +15,18 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public GameObject ConnectingPanel;
     public GameObject RoomListPanel;
     public int MaxPlayers = 2;
+    public GameObject RoomListPrefab;
+    public GameObject RoomListParent;
+
     private Dictionary<string, RoomInfo> roomListData;
+    private Dictionary<string, GameObject> roomListGameObject;
     #region UnityMethods
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ActivatePanel(LoginPanel.name);
         roomListData = new Dictionary<string, RoomInfo>();
+        roomListGameObject = new Dictionary<string, GameObject>();
     }
 
     // Update is called once per frame
@@ -65,6 +70,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         }
         ActivatePanel(RoomListPanel.name);
     }
+    
 
     #endregion
 
@@ -91,6 +97,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public override void OnRoomListUpdate(List<RoomInfo>roomList)
     {
+        //clear List
+        ClearRoomList();
         foreach (RoomInfo rooms in roomList)
         {
             Debug.Log("Room name"+rooms.Name);
@@ -102,8 +110,36 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                     roomListData.Remove(rooms.Name); 
                 }
             }
-            roomListData.Add(rooms.Name, rooms);
+            else
+            {
+                if (roomListData.ContainsKey(rooms.Name))
+                {
+                    //update list
+                    roomListData[rooms.Name] = rooms;
+                }
+                else
+                {
+                    roomListData.Add(rooms.Name, rooms);
+                }
+            }
+                
         }
+        foreach(RoomInfo roomItem in roomListData.Values)
+        {
+            GameObject roomListItemObject = Instantiate(RoomListPrefab);
+            roomListItemObject.transform.SetParent(RoomListParent.transform);
+            roomListItemObject.transform.localScale=Vector3.one;
+            //room name player number button room join
+            roomListItemObject.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text=roomItem.Name;
+            roomListItemObject.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text=roomItem.PlayerCount+"/"+roomItem.MaxPlayers;
+            roomListItemObject.transform.GetChild(2).gameObject.GetComponent<Button>().onClick.AddListener(()=>RoomJoinFromList(roomItem.Name));
+            roomListGameObject.Add(roomItem.Name,roomListItemObject);
+        }
+    }
+    public override void OnLeftLobby()
+    {
+        ClearRoomList();
+        roomListData.Clear();
     }
     #endregion
 
@@ -115,6 +151,26 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         RoomPanel.SetActive(PanelName.Equals(RoomPanel.name));
         ConnectingPanel.SetActive(PanelName.Equals(ConnectingPanel.name));
         RoomListPanel.SetActive(PanelName.Equals(RoomListPanel.name));
+        
+    }
+    public void RoomJoinFromList(string roomname)
+    {
+        if(PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby();
+        }
+        PhotonNetwork.JoinRoom(roomname);
+    }
+    public void ClearRoomList()
+    {
+        if (roomListGameObject.Count > 0)
+        {
+            foreach (var v in roomListGameObject.Values)
+            {
+                Destroy(v);
+            }
+            roomListGameObject.Clear();
+        }
     }
 
     #endregion
