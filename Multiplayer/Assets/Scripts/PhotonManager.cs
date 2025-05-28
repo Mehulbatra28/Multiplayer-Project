@@ -20,6 +20,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     private Dictionary<string, RoomInfo> roomListData;
     private Dictionary<string, GameObject> roomListGameObject;
+
+    [Header("InsideRoomPanel")]
+    public GameObject InsideRoomPanel;
     #region UnityMethods
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -92,6 +95,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        ActivatePanel(InsideRoomPanel.name);
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + "Roomjoined");
        
     }
@@ -151,6 +155,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         RoomPanel.SetActive(PanelName.Equals(RoomPanel.name));
         ConnectingPanel.SetActive(PanelName.Equals(ConnectingPanel.name));
         RoomListPanel.SetActive(PanelName.Equals(RoomListPanel.name));
+        InsideRoomPanel.SetActive(PanelName.Equals(InsideRoomPanel.name));
         
     }
     public void RoomJoinFromList(string roomname)
