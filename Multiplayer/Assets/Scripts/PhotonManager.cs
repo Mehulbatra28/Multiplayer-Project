@@ -35,6 +35,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         roomListData = new Dictionary<string, RoomInfo>();
         roomListGameObject = new Dictionary<string, GameObject>();
         PlayerListGameObject = new Dictionary<int, GameObject>();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     void Update()
@@ -94,6 +95,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveRoom();
         }
         ActivatePanel(LobbyPanel.name);
+    }
+    public void OnPlayMasterButtonClick()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+        PhotonNetwork.LoadLevel("Game");
+        }
     }
 
     #endregion
