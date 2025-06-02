@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.IsConnectedAndReady)
         {
-            Vector3 SpawnLocation = new Vector3(-16.7f,2.177f,-18.82f);
+            Vector3 SpawnLocation = new Vector3(-16.7f,0f,-18.82f);
             Quaternion SpawnRotation = Quaternion.identity;
             PhotonNetwork.Instantiate(PlayerPrefab.name,SpawnLocation, SpawnRotation);
         }
