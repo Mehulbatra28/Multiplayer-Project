@@ -1,10 +1,15 @@
 using UnityEngine;
 using Photon.Pun;
 
+
 public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     public GameObject[] LocalPlayerItems;
     public GameObject[] RemotePlayerItems;
+    public FirstPersonController FirstPersonController;
+    public GameObject Canvas;
+    public GameObject CameraHolder;
+
 
     void Start()
     {
@@ -18,6 +23,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             {
                 g.SetActive(false);
             }
+            GetComponent<FirstPersonController>().enabled = true;
+            Canvas.SetActive(true);
+            CameraHolder.SetActive(true);
+            
         }
         else
         {
@@ -29,6 +38,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             {
                 g.SetActive(true);
             }
+            GetComponent<FirstPersonController>().enabled = false;
+            Canvas.SetActive(false);
+            CameraHolder.SetActive(false);
+            
         }
     }
 }
