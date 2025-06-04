@@ -73,8 +73,16 @@ public class SimpleFPSController : MonoBehaviourPun
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
+        if(Mathf.Abs(moveX)>0.9f||Mathf.Abs(moveZ)>0.9f)
+        {
+            animationController.SetBool("IsRunning", true);
+        }
+        else
+        {
+            animationController.SetBool("IsRunning", false);
+        }
 
-        verticalVelocity += gravity * Time.deltaTime;
+            verticalVelocity += gravity * Time.deltaTime;
         move.y = verticalVelocity;
 
         controller.Move(move * moveSpeed * Time.deltaTime);
