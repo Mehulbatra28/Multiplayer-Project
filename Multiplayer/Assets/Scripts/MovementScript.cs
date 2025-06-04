@@ -33,12 +33,32 @@ public class SimpleFPSController : MonoBehaviourPun
 
     void Update()
     {
-        if (!photonView.IsMine) return;
+        if (photonView.IsMine)
+        {
 
-        HandleMouseLook();
-        HandleMovement();
+            HandleMouseLook();
+            HandleMovement();
+        }
+        else
+        {
+            ApplyRemoteGravity();
+        }
+
     }
 
+    public void ApplyRemoteGravity()
+    {
+        if(!controller.isGrounded)
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+        }
+        else
+        {
+            verticalVelocity = -2f;
+        }
+        Vector3 gravityMove = new Vector3(0, verticalVelocity, 0);
+        controller.Move(gravityMove * Time.deltaTime);
+    }
     void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;

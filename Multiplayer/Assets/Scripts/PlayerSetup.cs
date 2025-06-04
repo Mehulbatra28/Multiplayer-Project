@@ -6,7 +6,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
 {
     public GameObject[] LocalPlayerItems;
     public GameObject[] RemotePlayerItems;
-    public FirstPersonController FirstPersonController;
+    public SimpleFPSController FirstPersonController;
     public GameObject Canvas;
     public GameObject CameraHolder;
 
