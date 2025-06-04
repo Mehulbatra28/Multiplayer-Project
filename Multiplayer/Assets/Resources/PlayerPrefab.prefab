@@ -4776,6 +4776,7 @@ GameObject:
   - component: {fileID: 6664078868046335066}
   - component: {fileID: 9171596080905425043}
   - component: {fileID: 376046747459682451}
+  - component: {fileID: 7766057471536587551}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -5011,6 +5012,28 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: -9.81
   cameraHolder: {fileID: 1933670317547808104}
+--- !u!95 &7766057471536587551
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308668614252061161}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: fba25761fb41e18428fe9fcd8182ebaf, type: 3}
+  m_Controller: {fileID: 9100000, guid: 2362dafd46a664944a60fc45c46746eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8434308056099588372
 GameObject:
   m_ObjectHideFlags: 0
