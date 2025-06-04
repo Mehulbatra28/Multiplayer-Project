@@ -21,7 +21,7 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             }
             foreach (GameObject g in RemotePlayerItems)
             {
-                g.SetActive(false);
+                g.SetActive(true);
             }
             GetComponent<FirstPersonController>().enabled = true;
             Canvas.SetActive(true);

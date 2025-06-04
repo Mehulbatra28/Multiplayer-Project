@@ -10,6 +10,7 @@ public class SimpleFPSController : MonoBehaviourPun
     public float gravity = -9.81f;
     public Transform cameraHolder;
 
+    private Animator animationController;
     private CharacterController controller;
     private float verticalVelocity;
     private float xRotation = 0f;
@@ -17,6 +18,7 @@ public class SimpleFPSController : MonoBehaviourPun
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animationController = GetComponent<Animator>();
 
         // Only local player can control the camera
         if (!photonView.IsMine)
@@ -55,6 +57,12 @@ public class SimpleFPSController : MonoBehaviourPun
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
+
+        if (animationController != null)
+        {
+            animationController.SetFloat("Horizontal", moveX);
+            animationController.SetFloat("Vertical", moveZ);
+        }
 
         if (controller.isGrounded)
         {

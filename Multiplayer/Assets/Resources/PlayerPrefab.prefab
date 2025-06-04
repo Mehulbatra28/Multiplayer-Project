@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1729940312117956319
 Transform:
   m_ObjectHideFlags: 0
@@ -1447,7 +1447,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2933043559029558314
 Transform:
   m_ObjectHideFlags: 0
@@ -2052,7 +2052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8137424014367430237
 Transform:
   m_ObjectHideFlags: 0
@@ -5021,7 +5021,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8308668614252061161}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fba25761fb41e18428fe9fcd8182ebaf, type: 3}
+  m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2362dafd46a664944a60fc45c46746eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
