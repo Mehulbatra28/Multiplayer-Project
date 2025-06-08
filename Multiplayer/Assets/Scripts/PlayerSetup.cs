@@ -9,10 +9,12 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     public SimpleFPSController FirstPersonController;
     public GameObject Canvas;
     public GameObject CameraHolder;
-
+    private Animator animationController;
 
     void Start()
     {
+        animationController = GetComponent<Animator>();
+
         if (photonView.IsMine)
         {
             foreach (GameObject g in LocalPlayerItems)
@@ -26,7 +28,8 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             GetComponent<FirstPersonController>().enabled = true;
             Canvas.SetActive(true);
             CameraHolder.SetActive(true);
-            
+            animationController.SetBool("Soldier", true);
+
         }
         else
         {
@@ -41,7 +44,9 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             GetComponent<FirstPersonController>().enabled = false;
             Canvas.SetActive(false);
             CameraHolder.SetActive(false);
-            
+            animationController.SetBool("Soldier", false);
+
         }
+        
     }
 }
