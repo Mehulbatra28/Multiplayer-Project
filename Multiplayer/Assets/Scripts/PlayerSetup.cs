@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 
 public class PlayerSetup : MonoBehaviourPunCallbacks
@@ -10,10 +11,12 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
     public GameObject Canvas;
     public GameObject CameraHolder;
     private Animator animationController;
+    private ShootScript shootScript;
 
     void Start()
     {
         animationController = GetComponent<Animator>();
+        shootScript = GetComponent<ShootScript>();
 
         if (photonView.IsMine)
         {
@@ -27,6 +30,10 @@ public class PlayerSetup : MonoBehaviourPunCallbacks
             }
             GetComponent<FirstPersonController>().enabled = true;
             Canvas.SetActive(true);
+            if(Input.GetButton("Fire1"))
+            {
+                shootScript.Fire();
+            }
             CameraHolder.SetActive(true);
             animationController.SetBool("Soldier", true);
 
